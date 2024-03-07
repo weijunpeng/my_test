@@ -26,6 +26,10 @@ url = 'https://appgsoghlmo7596.pc.xiaoe-tech.com/p/t_pc/course_pc_detail/video/v
 
 option = webdriver.ChromeOptions()
 option.add_experimental_option("detach", True)
+option.add_argument("--start-maximized") #最大化
+option.add_argument("--headless") #无头模式 即无浏览器界面
+option.add_argument("--no-sandbox")
+option.add_argument("--disable-dev-shm-usage")
 #以下三个设置作用：加载插件，但只能用打开一个浏览器，会调用cookie
 # option.add_argument(r'user-data-dir=C:\Users\v_weijpeng.TENCENT\AppData\Local\Google\Chrome\User Data')  # C:\Users\v_weijpeng.TENCENT\AppData\Local\Google\Chrome\User Data\Default
 # option.add_argument("--no-sandbox") 
@@ -36,15 +40,20 @@ driver.implicitly_wait(20)  # 隐式等待 程序表现：每当driver执行动�
 
 # 登录
 driver.get(url='https://appgsoghlmo7596.pc.xiaoe-tech.com/login')
+print('打开登录界面成功')
 driver.find_element(By.CSS_SELECTOR,"#__layout > div > div > div > div > div > div.login-xiaoe-tabs > div.login-phone.gary > p").click()
 driver.find_element(By.CSS_SELECTOR,"#__layout > div > div > div > div > div > div.login-xiaoe-phoneList > div.login-xiaoe-imgCode.input-margin > div > input").send_keys('18022311110092')
 driver.find_element(By.CSS_SELECTOR,"#__layout > div > div > div > div > div > div.login-xiaoe-phoneList > div.login-xiaoe-enterCode.input-margin > div > input").send_keys('123456')
 driver.find_element(By.XPATH,'//span[@class="ss-checkbox__input"]').click() 
 driver.find_element(By.XPATH,'//button[text()="登录"]').click()
+print('点击登录成功')
 
-time.sleep(2)
-driver.execute_script("window.scrollTo(0,1000)")
-driver.find_element(By.XPATH,'//img[@src="https://wechatapppro-1252524126.cdn.xiaoeknow.com/appgsoghlmo7596/image/b_u_6209c60d2d1f8_p0FH2xZ0/l061xcsn00j5.jpg?imageMogr2/quality/80|imageMogr2/ignore-error/1"]').click() #成为一名合格律师
+time.sleep(10)
+print('当前页面：'+driver.title)
+#driver.execute_script("window.scrollTo(0,1000)")
+driver.find_element(By.XPATH,r'//div[text()="学习记录"]').click() 
+#driver.find_element(By.XPATH,'//img[@src="https://wechatapppro-1252524126.cdn.xiaoeknow.com/appgsoghlmo7596/image/b_u_6209c60d2d1f8_p0FH2xZ0/l061xdu50y3f.jpg?imageMogr2/quality/80|imageMogr2/ignore-error/1"]').click() #成为一名合格律师
+print("点击成功")
 
 
 time.sleep(5)
